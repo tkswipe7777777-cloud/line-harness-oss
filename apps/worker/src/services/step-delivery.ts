@@ -88,9 +88,9 @@ export async function resolveMetadata(
   return {};
 }
 
-/** Default delivery window: 9:00-23:00 JST. If outside, push to next 9:00 AM. */
-const DEFAULT_START_HOUR = 9;
-const DEFAULT_END_HOUR = 23;
+/** Default delivery window: 0:00-24:00 JST (24h delivery, no restriction). */
+const DEFAULT_START_HOUR = 0;
+const DEFAULT_END_HOUR = 24;
 
 function enforceDeliveryWindow(date: Date, preferredHour?: number): Date {
   // date is already shifted to JST epoch (+9h)
