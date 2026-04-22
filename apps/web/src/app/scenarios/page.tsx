@@ -45,7 +45,7 @@ interface CreateFormState {
 }
 
 export default function ScenariosPage() {
-  const { selectedAccountId } = useAccount()
+  const { selectedAccountId, loading: accountLoading } = useAccount()
   const [scenarios, setScenarios] = useState<ScenarioWithCount[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -78,8 +78,8 @@ export default function ScenariosPage() {
   }, [selectedAccountId])
 
   useEffect(() => {
-    loadScenarios()
-  }, [loadScenarios])
+    if (!accountLoading) loadScenarios()
+  }, [loadScenarios, accountLoading])
 
   const handleCreate = async () => {
     if (!form.name.trim()) {
